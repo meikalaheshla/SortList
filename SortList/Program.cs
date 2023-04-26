@@ -39,9 +39,13 @@ namespace SortList
             {
                 Console.WriteLine($"{person.Name}");
             }
+
+            //ordina lista di interi 
             
             List<int> listint = new List<int>() { 1, 3, 4,6 };
            List<int> orderedListint = SortList(listint, l=>l );
+
+            //check del risultato 
             for (int i = 0; i < orderedListint.Count; i++) { Console.WriteLine(orderedListint[i]);}
 
 
