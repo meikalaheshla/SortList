@@ -102,6 +102,21 @@ namespace SortList
             }
 
         }
+        public static List<T> SortTestDesc<T>(List<T> list, string property = null)
+        {
+            if (property == null)
+            {
+                var testSortedListInt = list.OrderByDescending(p => p).ToList();
+
+                return testSortedListInt;
+            }
+            else
+            {
+                var testSortedList = list.OrderByDescending(x => x.GetType().GetProperty(property).GetValue(x)).ToList();
+                return testSortedList;
+            }
+
+        }
 
 
         public class Person
