@@ -48,7 +48,14 @@ namespace SortList
             //check del risultato 
             for (int i = 0; i < orderedListint.Count; i++) { Console.WriteLine(orderedListint[i]);}
 
-
+            // SORT TEST WITH NO TKEY 
+            Console.WriteLine("TEST SENZA TKEY");
+            
+            List<Person> testSortedList = SortTest(people, "Name");
+            foreach (Person person in testSortedList)
+            { 
+            Console.WriteLine(person.Name);
+            }
         }
 
         public static List<T> SortList<T, Tkey>( List <T> list, Func<T, Tkey> property)
@@ -70,6 +77,15 @@ namespace SortList
 
 
             return sortedList;
+        }
+
+
+        public static List<T> SortTest<T>(List<T> list, string property) 
+        {
+           
+                var testSortedList = list.OrderBy(x => x.GetType().GetProperty(property).GetValue(x)).ToList();
+
+            return testSortedList;
         }
 
 
