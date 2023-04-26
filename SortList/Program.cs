@@ -42,7 +42,7 @@ namespace SortList
 
             //ordina lista di interi 
             
-            List<int> listint = new List<int>() { 1, 3, 4,6 };
+            List<int> listint = new List<int>() { 1, 3, 4, 6, 9, 2, 5 };
            List<int> orderedListint = SortList(listint, l=>l );
 
             //check del risultato 
@@ -56,6 +56,13 @@ namespace SortList
             { 
             Console.WriteLine(person.Name);
             }
+
+            //SORT TEST INT WITH NO TKEY
+
+            Console.WriteLine("TEST LISTA DI INTERI");
+            List<int> testOrderedListInt = SortTest(listint);
+            for(int i = 0;i < testOrderedListInt.Count;i++) { Console.WriteLine(testOrderedListInt[i]);}
+            
         }
 
         public static List<T> SortList<T, Tkey>( List <T> list, Func<T, Tkey> property)
@@ -80,12 +87,20 @@ namespace SortList
         }
 
 
-        public static List<T> SortTest<T>(List<T> list, string property) 
+        public static List<T> SortTest<T>(List<T> list, string property = null) 
         {
-           
-                var testSortedList = list.OrderBy(x => x.GetType().GetProperty(property).GetValue(x)).ToList();
+            if (property == null)
+            {
+                var testSortedListInt = list.OrderBy(p => p).ToList();
 
-            return testSortedList;
+                return testSortedListInt;
+            }
+            else 
+            {
+                var testSortedList = list.OrderBy(x => x.GetType().GetProperty(property).GetValue(x)).ToList();
+                return testSortedList;
+            }
+
         }
 
 
